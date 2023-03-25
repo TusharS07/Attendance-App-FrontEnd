@@ -16,7 +16,33 @@
 }
 
 .signOutbutton {
-    background-color: firebrick; /* Green */
+    background-color: firebrick;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 12px 28px;
+}
+
+.Button {
+    background-color: blue; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 12px 28px;
+}
+
+.logoutButton {
+    background-color: darksalmon; 
     border: none;
     color: white;
     text-align: center;

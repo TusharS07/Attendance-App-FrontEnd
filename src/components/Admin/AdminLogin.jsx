@@ -1,16 +1,14 @@
 import { Avatar, Grid, TextField, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import CircularProgress from '@mui/material/CircularProgress';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify'
-import { Copyright } from '@mui/icons-material';
 
-const Login = () => {
+const AdminLogin = () => {
     
     let navigate = useNavigate();
 
@@ -30,13 +28,13 @@ const Login = () => {
             alert("Please provide login details.")
         }
         else {
-            axios.post("http://localhost:8082/UserPage/Login", user)
+            axios.post("http://localhost:8082/AdminPage/LoginAdmin", user)
                .then((responce) => {
                  toast.success(responce.data.message);
                  console.log(responce);
                  localStorage.setItem("Token", responce.data.obj);
                  console.log(localStorage.getItem("Token"));
-                 setTimeout(() => { navigate("/Home"); }, 2000);
+                 setTimeout(() => { navigate("/Admin"); }, 2000);
                })
                .catch((error) => { toast.error(error.response.data); })
         }
@@ -54,7 +52,7 @@ const Login = () => {
             <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-            Login 
+            Admin Login 
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
@@ -108,4 +106,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default AdminLogin

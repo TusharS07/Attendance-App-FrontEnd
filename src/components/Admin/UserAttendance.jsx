@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Record.css';
 
-const Record = () => {
+const UserAttendance = () => {
 
   let navigate = useNavigate();
   const [recordData, setRecordData] = useState([]);
@@ -12,20 +12,22 @@ const Record = () => {
     fetchUserRecord();
   },[])
 
-  const fetchUserRecord = () => {
-    axios.get(`http://localhost:8082/UserPage/Attendence_Report?token=${localStorage.getItem("Token")}`)
+  const fetchUserRecord = (userId) => {
+    axios.get(`http://localhost:8082/AdminPage/UserAttendence_Report?token=${localStorage.getItem("Token")}&userID=${userId}`)
     .then((res) => {
         console.log(res.data.obj)
         setRecordData(res.data.obj)
     })
     .catch((err) => {
         console.log(err)
-    })
+    }
+    )
 }
 
 
   return (
     <div>
+    
       <table>
       <tr>
           <th>UserId</th>
@@ -51,4 +53,4 @@ const Record = () => {
   )
 }
 
-export default Record
+export default UserAttendance
