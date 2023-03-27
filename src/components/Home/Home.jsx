@@ -20,7 +20,22 @@ const Home = () => {
 
     useEffect (() => {
         fetchUserAttendanceRecord();
+        fetchUserData();
     }, [])
+
+
+    const fetchUserData = () => {
+        axios.get(`http://localhost:8082/UserPage/Get_User_Data?token=${localStorage.getItem("Token")}`)
+        .then((res) => {
+            console.log(res);
+            setSignIn(res.data.obj.signIN);
+            console.log(signIn)
+        })
+        .catch((err) => {
+            console.log(err);
+          })
+    }
+
 
     const fetchUserAttendanceRecord = () => {
         axios.get(`http://localhost:8082/UserPage/Attendence_Report?token=${localStorage.getItem("Token")}`)
@@ -32,13 +47,15 @@ const Home = () => {
           })
     }
 
+
     const signInHandler = () => {
         axios.post(`http://localhost:8082/UserPage/SignIn_Attendence?token=${localStorage.getItem("Token")}`)
         .then((res) => {
             console.log(res);
             toast.success(res.data.message);
             fetchUserAttendanceRecord();
-            setSignIn(true);
+            fetchUserData();
+
         })
         .catch((err) => {
             console.log(err);
@@ -52,7 +69,7 @@ const Home = () => {
             console.log(res);
             toast.success(res.data.message);
             fetchUserAttendanceRecord();
-            setSignIn(false);
+            fetchUserData();
         })
         .catch((err) => {
             console.log(err);
